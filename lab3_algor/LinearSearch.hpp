@@ -24,7 +24,7 @@ int linearsearch(Iter left, Iter right,int target)
             {
                 auto end = std::chrono::steady_clock::now();
                 std::chrono::duration<float,std::milli> duration = end - start;
-                std::cout << duration.count() << std::endl;
+                std::cout << duration.count() << " LS " << std::endl;
                 return std::distance(&*left, i);
             }
         }

@@ -30,7 +30,7 @@ namespace Generate{
         }
         
         int lastprime = 0;
-        for(int i = 1; temp.size() < size;)
+        for(int i = 2; temp.size() < size;)
         {
             if(table[i])
             {
