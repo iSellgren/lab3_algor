@@ -10,15 +10,16 @@
 #define GenePrime_hpp
 
 #include <stdio.h>
-namespace Generate{
+namespace Generate
+{
     std::vector<int> Prime(int size)
     {
         std::vector<int> temp;
-        std::vector<bool> table(1000*size,true);
+        std::vector<bool> table(10000*size,true);
         
         temp.reserve(size);
         
-        for(int i = 2; i < sqrt(1000*size); i++)
+        for(int i = 2; i < sqrt(10000*size); i++)
         {
             if(table[i])
             {
@@ -46,4 +47,6 @@ namespace Generate{
         return temp;
     }
 }
+
+
 #endif /* GenePrime_hpp */

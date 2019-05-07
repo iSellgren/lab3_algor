@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <fstream>
 #include <random>
 #include "LinearSearch.hpp"
 #include "GenePrime.hpp"
@@ -16,40 +17,28 @@
 #include "BinarySearchTreeBalance.hpp"
 #include "BinarySearchTree.hpp"
 #include "Hashtable.hpp"
-
-
+#include "TimeMeasuring.hpp"
+/*template <typename Container>
+Container Create(std::vector<int> &Primes)
+{
+    Container cont;
+    for(int i = 0; i < Primes.size(); i++)
+    {
+        cont.insert(Primes[i]);
+    }
+    return cont;
+}
+*/
 int main() {
     
-    std::vector<int> Test;
-    Test=Generate::Prime(10);
+    std::vector<int> Primes;
+    Primes=Generate::Prime(100000);
     
-    std::random_device rd;
-    std::mt19937 eng(rd());
-    std::uniform_int_distribution<> range(0, Test.size() - 1);
-    BSTB<int> K;
-    BST<int> I;
-    HT<int> ht;
-    
-    
-    
-    
-    for(int i = 0; i < Test.size(); i++)
-    {
-        K.insert(Test[i]);
-        I.insert(Test[i]);
-        ht.insert(Test[i]);
-    }
-    
-    
-    for(int i=0; i < 100; i++)
-    {
-        int randPrime = Test[range(eng)];
-        int Line = Sorting_Algorithms::linearsearch(Test.begin(), Test.end(), randPrime);
-        int Tine = Sorting_Algorithms::binarysearch(Test.begin(), Test.end(), randPrime);
-
-        std::cout << K.find(randPrime) << std::endl;
-        std::cout << I.find(randPrime) << std::endl;
-    }
+    TimeMeas(BalanceTree<int>(), 10000, 5, "BalanceTree");
+    TimeMeas(BinaryTree<int>(), 10000, 5, "BinaryTree");
+    TimeMeas(HashTable<int>(), 10000, 5, "HashTable");
+    TimerMeas(BinarySearch, 10000, 5, "BinarySearch");
+    TimerMeas(LinearSearch, 10000, 5, "LinearSearch");
     
     
     return 0;

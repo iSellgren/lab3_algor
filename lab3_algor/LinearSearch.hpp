@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <algorithm>
 #include <iterator>
-namespace Sorting_Algorithms{
+namespace Search_Algorithms{
     template <typename Iter>
 int linearsearch(Iter left, Iter right,int target)
     {
@@ -25,7 +25,7 @@ int linearsearch(Iter left, Iter right,int target)
                 auto end = std::chrono::steady_clock::now();
                 std::chrono::duration<float,std::milli> duration = end - start;
                 std::cout << duration.count() << " LS " << std::endl;
-                return std::distance(&*left, i);
+                return static_cast<double>(std::distance(&*left, i));
             }
         }
         return 0;

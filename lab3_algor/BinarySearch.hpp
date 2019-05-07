@@ -13,7 +13,7 @@
 #include <algorithm>
 #include <iterator>
 #endif /* BinarySearch_hpp */
-namespace Sorting_Algorithms{
+namespace Search_Algorithms{
     template <typename Iter>
     int binarysearch(Iter left, Iter right,int target)
     {
@@ -29,7 +29,7 @@ namespace Sorting_Algorithms{
                 auto end = std::chrono::steady_clock::now();
                 std::chrono::duration<float,std::milli> duration = end - start;
                 std::cout << duration.count() << " BS" << std::endl;
-                return std::distance(&*left, mid);
+                return static_cast<double>(std::distance(&*left, mid));
             }
             
             if(*mid < target)

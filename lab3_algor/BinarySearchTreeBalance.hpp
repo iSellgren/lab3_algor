@@ -13,7 +13,7 @@
 #include <iostream>
 //subRoot är noden som är root till subträdet
 template <typename T>
-class BSTB
+class BalanceTree
 {
 private:
     struct Node
@@ -53,7 +53,7 @@ private:
             {
                 auto end = std::chrono::steady_clock::now();
                 std::chrono::duration<float,std::milli> duration = end - start;
-                std::cout << duration.count() << " BSTB" << std::endl;
+                std::cout << duration.count() << " BalanceTree" << std::endl;
                 return subRoot;
             }
         
@@ -61,59 +61,59 @@ private:
         return NULL;
     }
     int max(int left,int right)const;
-    const T & elementAt(Node *t ) const;
+    const T* elementAt(Node *t ) const;
 
     
 public:
-    BSTB();
-    ~BSTB();
+    BalanceTree();
+    ~BalanceTree();
     void chopTree();
     void insert(const T & x);
     const T &find(const T & value) const;
 
 };
 template <class T>
-BSTB<T>::BSTB()
+BalanceTree<T>::BalanceTree()
 {
     root = NULL;
 }
 template <class T>
-BSTB<T>::~BSTB()
+BalanceTree<T>::~BalanceTree()
 {
     chopTree();
 }
 
 
 template <class T>
-void BSTB<T>::chopTree()
+void BalanceTree<T>::chopTree()
 {
-    chopTree( root );
+    chopTree(root);
 }
 
 template<class T>
-int BSTB<T>::height(Node* subRoot) const
+int BalanceTree<T>::height(Node* subRoot) const
 {
     return subRoot == NULL ? -1 : subRoot->height;
 }
 template <class T>
-int BSTB<T>::max( int left, int right ) const
+int BalanceTree<T>::max( int left, int right ) const
 {
     return left > right ? left : right;
 }
 template <class T>
-    void BSTB<T>::insert(const T & value)
+    void BalanceTree<T>::insert(const T & value)
 {
     insert(value,root);
 }
 template <class T>
-const T & BSTB<T>::find( const T & value ) const
+const T & BalanceTree<T>::find( const T & value ) const
 {
-    return elementAt(find(value, root));
+    return *elementAt(find(value, root));
 }
 
 
 template <class T>
-void BSTB<T>::chopTree( Node *&subRoot ) const
+void BalanceTree<T>::chopTree( Node *&subRoot ) const
 {
     if( subRoot != NULL )
     {
@@ -126,7 +126,7 @@ void BSTB<T>::chopTree( Node *&subRoot ) const
 }
 
 template <class T>
-    void BSTB<T>::insert(const T & x, Node* & subRoot ) const
+    void BalanceTree<T>::insert(const T & x, Node* & subRoot ) const
 {
     if( subRoot == NULL )
         subRoot = new Node( x, NULL, NULL );
@@ -160,15 +160,15 @@ template <class T>
 
 
 template <class T>
-const T & BSTB<T>::elementAt(Node *subRoot ) const
+const T* BalanceTree<T>::elementAt(Node *subRoot ) const
 {
     if( subRoot == NULL )
         return NULL;
     else
-        return subRoot->data;
+        return &subRoot->data;
 }
 template <typename T>
-void BSTB<T>::rotateWithleftLeafChild(Node *& tempRoot2) const
+void BalanceTree<T>::rotateWithleftLeafChild(Node *& tempRoot2) const
 {
     Node *tempRoot1 = tempRoot2->leftLeaf;
     tempRoot2->leftLeaf = tempRoot1->rightLeaf;
@@ -178,7 +178,7 @@ void BSTB<T>::rotateWithleftLeafChild(Node *& tempRoot2) const
     tempRoot2 = tempRoot1;
 }
 template <typename T>
-void BSTB<T>::rotateWithrightLeafChild( Node *&tempRoot1 ) const
+void BalanceTree<T>::rotateWithrightLeafChild( Node *&tempRoot1 ) const
 {
     Node *tempRoot2 = tempRoot1->rightLeaf;
     tempRoot1->rightLeaf = tempRoot2->leftLeaf;
@@ -188,13 +188,13 @@ void BSTB<T>::rotateWithrightLeafChild( Node *&tempRoot1 ) const
     tempRoot1 = tempRoot2;
 }
 template <typename T>
-void BSTB<T>::doubleWithleftLeafChild( Node *&tempRoot3 ) const
+void BalanceTree<T>::doubleWithleftLeafChild( Node *&tempRoot3 ) const
 {
     rotateWithrightLeafChild( tempRoot3->leftLeaf );
     rotateWithleftLeafChild( tempRoot3 );
 }
 template <typename T>
-void BSTB<T>::doubleWithrightLeafChild( Node *&tempRoot1 ) const
+void BalanceTree<T>::doubleWithrightLeafChild( Node *&tempRoot1 ) const
 {
     rotateWithleftLeafChild( tempRoot1->rightLeaf );
     rotateWithrightLeafChild( tempRoot1 );

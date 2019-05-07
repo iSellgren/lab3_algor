@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <vector>
 template <typename T>
-class HT
+class HashTable
 {
 private:
     struct Node
@@ -33,17 +33,17 @@ private:
     
     
 public:
-    HT();
+    HashTable();
     void insert(T &value);
     size_t newTableSize();
     void reHash();
+    bool find(const T &value);
     
 };
 template<class T>
-HT<T>::HT()
+HashTable<T>::HashTable()
 {
-    
-    //hashTable.resize(reserve_size);
+
     hashTable = std::vector<Node*>(2);
     for (int i = 0; i < hashTable.size(); i++)
         hashTable[i] = NULL;
@@ -51,7 +51,7 @@ HT<T>::HT()
     
 }
 template<class T>
-void HT<T>::insert(T &value)
+void HashTable<T>::insert(T &value)
 {
     int pos = (value % hashTable.size());
     Node * iter = hashTable[pos];
@@ -68,7 +68,6 @@ void HT<T>::insert(T &value)
         loadfactor = (static_cast<double>(items)/static_cast<double>(hashTable.size()));
         if(loadfactor >= 0.5)
         {
-            
             reHash();
             items = 0;
         }
@@ -86,7 +85,7 @@ bool isPrime(int n)
     return true;
 }
 template<class T>
-size_t HT<T>::newTableSize()
+size_t HashTable<T>::newTableSize()
 {
     
     bool found = false;
@@ -103,7 +102,7 @@ size_t HT<T>::newTableSize()
     return newSize;
 }
 template<class T>
-void HT<T>::reHash()
+void HashTable<T>::reHash()
 {
     std::vector<Node*> temp;
     temp = hashTable;
@@ -118,7 +117,6 @@ void HT<T>::reHash()
         if(temp[i] != NULL)
         {
             Node * iter = temp[i];
-            std::cout << iter->data << std::endl;
             insert(iter->data);
             while (iter->next != NULL)
             {
@@ -130,5 +128,24 @@ void HT<T>::reHash()
         }
     }
     
+}
+template<class T>
+bool HashTable<T>::find(const T &value)
+{
+    int pos = (value % hashTable.size());
+    auto start = std::chrono::steady_clock::now();
+    Node * iter = hashTable[pos];
+    while(iter != NULL)
+    {
+        if(iter->data == value)
+        {
+            auto end = std::chrono::steady_clock::now();
+            std::chrono::duration<float,std::milli> duration = end - start;
+            std::cout << duration.count() << " HashTable " <<  std::endl;
+            return 1;
+        }
+        iter = iter->next;
+    }
+    return 0;
 }
 #endif /* Hashtable_hpp */

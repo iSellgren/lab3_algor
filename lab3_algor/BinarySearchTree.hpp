@@ -15,7 +15,7 @@
 //subRoot är noden som är root till subträdet
 
 template <typename T>
-class BST
+class BinaryTree
 {
 private:
     struct Node
@@ -47,18 +47,18 @@ private:
             {
                 auto end = std::chrono::steady_clock::now();
                 std::chrono::duration<float,std::milli> duration = end - start;
-                std::cout << duration.count() << " BST" << std::endl;
+                std::cout << duration.count() << " BinaryTree" << std::endl;
                 return subRoot;
             }
         
         
         return NULL;
     }
-    const T & elementAt(Node *t ) const;
+    const T* elementAt(Node *t ) const;
     
 public:
-    BST();
-    ~BST();
+    BinaryTree();
+    ~BinaryTree();
     void chopTree();
     void insert(const T & x);
     const T &find(const T & value) const;
@@ -66,38 +66,38 @@ public:
     
 };
 template <class T>
-BST<T>::BST()
+BinaryTree<T>::BinaryTree()
 {
     root = NULL;
 }
 template <class T>
-BST<T>::~BST()
+BinaryTree<T>::~BinaryTree()
 {
     chopTree();
 }
 
 template <class T>
-void BST<T>::chopTree()
+void BinaryTree<T>::chopTree()
 {
     chopTree( root );
 }
 template <class T>
-void BST<T>::insert(const T & value)
+void BinaryTree<T>::insert(const T & value)
 {
     insert(value,root);
 }
 
 template <class T>
-const T & BST<T>::find( const T & value ) const
+const T & BinaryTree<T>::find( const T & value ) const
 {
-    return elementAt(find(value, root));
+    return *elementAt(find(value, root));
 }
 
 
 
 
 template <class T>
-void BST<T>::chopTree( Node *&subRoot ) const
+void BinaryTree<T>::chopTree( Node *&subRoot ) const
 {
     if( subRoot != NULL )
     {
@@ -110,7 +110,7 @@ void BST<T>::chopTree( Node *&subRoot ) const
 }
 
 template <class T>
-void BST<T>::insert(const T & x, Node* & subRoot ) const
+void BinaryTree<T>::insert(const T & x, Node* & subRoot ) const
 {
     if( subRoot == NULL )
         subRoot = new Node( x, NULL, NULL );
@@ -127,11 +127,11 @@ void BST<T>::insert(const T & x, Node* & subRoot ) const
     
 }
 template <class T>
-const T & BST<T>::elementAt(Node *subRoot ) const
+const T* BinaryTree<T>::elementAt(Node *subRoot ) const
 {
     if( subRoot == NULL )
         return NULL;
     else
-        return subRoot->data;
+        return &subRoot->data;
 }
 #endif /* BinarySearchTree_hpp */
