@@ -17,14 +17,14 @@ namespace Search_Algorithms{
 int linearsearch(Iter left, Iter right,int target)
     {
         --right;
-        auto start = std::chrono::steady_clock::now();
+//        auto start = std::chrono::steady_clock::now();
         for(int* i = &*left; i < &*right; i++)
         {
             if(*i == target)
             {
-                auto end = std::chrono::steady_clock::now();
-                std::chrono::duration<float,std::milli> duration = end - start;
-                std::cout << duration.count() << " LS " << std::endl;
+//                auto end = std::chrono::steady_clock::now();
+//                std::chrono::duration<float,std::milli> duration = end - start;
+//                std::cout << duration.count() << std::endl;
                 return static_cast<double>(std::distance(&*left, i));
             }
         }

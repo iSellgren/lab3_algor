@@ -19,18 +19,17 @@ private:
     {
     public:
         
+        T data;
         Node* next;
-        int data;
+       
         
-        Node( int _n ) : data(_n), next(NULL) { }
+        Node(T _n ) : data(_n), next(NULL) { }
         
     };
     std::vector<Node *> hashTable;
     int items = 0;
-    double loadfactor;
-    
-    
-    
+    double loadfactor = 0.5;
+    double load;
     
 public:
     HashTable();
@@ -53,6 +52,8 @@ HashTable<T>::HashTable()
 template<class T>
 void HashTable<T>::insert(T &value)
 {
+    
+
     int pos = (value % hashTable.size());
     Node * iter = hashTable[pos];
     if(iter != NULL)
@@ -60,18 +61,21 @@ void HashTable<T>::insert(T &value)
         while (iter->next != NULL)
             iter = iter->next;
         iter->next = new Node(value);
+        ++items;
+        
     }
     else
     {
         hashTable[pos] = new Node(value);
         ++items;
-        loadfactor = (static_cast<double>(items)/static_cast<double>(hashTable.size()));
-        if(loadfactor >= 0.5)
-        {
-            reHash();
-            items = 0;
-        }
+
     }
+    load = (static_cast<double>(items)/static_cast<double>(hashTable.size()));
+    if(load >= loadfactor)
+    {
+        reHash();
+    }
+
 }
 
 bool isPrime(int n)
@@ -90,7 +94,7 @@ size_t HashTable<T>::newTableSize()
     
     bool found = false;
     
-    int newSize = static_cast<int>(hashTable.size()); //trying to get next prime.
+    int newSize = 2*static_cast<int>(hashTable.size()); //trying to get next prime.
     
     while(!found) {
         
@@ -104,8 +108,9 @@ size_t HashTable<T>::newTableSize()
 template<class T>
 void HashTable<T>::reHash()
 {
+    items = 0;
     std::vector<Node*> temp;
-    temp = hashTable;
+    temp = std::move(hashTable);
     
     hashTable.clear();
     hashTable.resize(temp.size());
@@ -114,38 +119,35 @@ void HashTable<T>::reHash()
     
     for(int i = 0; i < temp.size();i++)
     {
-        if(temp[i] != NULL)
+        auto ptr = temp[i];
+        
+        while(ptr)
         {
-            Node * iter = temp[i];
-            insert(iter->data);
-            while (iter->next != NULL)
-            {
-                
-                insert(iter->next->data);
-                break;
-            }
-
+            
+            insert(ptr->data);
+            ptr = ptr->next;
         }
+        
     }
-    
 }
 template<class T>
 bool HashTable<T>::find(const T &value)
 {
     int pos = (value % hashTable.size());
-    auto start = std::chrono::steady_clock::now();
+    
     Node * iter = hashTable[pos];
     while(iter != NULL)
     {
         if(iter->data == value)
         {
-            auto end = std::chrono::steady_clock::now();
-            std::chrono::duration<float,std::milli> duration = end - start;
-            std::cout << duration.count() << " HashTable " <<  std::endl;
+
             return 1;
         }
         iter = iter->next;
     }
+    std::cout << hashTable.size() << std::endl;
+    std::cout << "Fucked up" << std::endl;
+
     return 0;
 }
 #endif /* Hashtable_hpp */

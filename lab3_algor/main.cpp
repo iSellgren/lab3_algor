@@ -10,7 +10,6 @@
 #include <vector>
 #include <cmath>
 #include <fstream>
-#include <random>
 #include "LinearSearch.hpp"
 #include "GenePrime.hpp"
 #include "BinarySearch.hpp"
@@ -18,27 +17,18 @@
 #include "BinarySearchTree.hpp"
 #include "Hashtable.hpp"
 #include "TimeMeasuring.hpp"
-/*template <typename Container>
-Container Create(std::vector<int> &Primes)
-{
-    Container cont;
-    for(int i = 0; i < Primes.size(); i++)
-    {
-        cont.insert(Primes[i]);
-    }
-    return cont;
-}
-*/
+
 int main() {
+//    std::vector<int>Primes;
+//    Primes=Generate::Prime(INT_MAX);
+//    std::cout << Primes.back() << std::endl;
     
-    std::vector<int> Primes;
-    Primes=Generate::Prime(100000);
     
-    TimeMeas(BalanceTree<int>(), 10000, 5, "BalanceTree");
-    TimeMeas(BinaryTree<int>(), 10000, 5, "BinaryTree");
-    TimeMeas(HashTable<int>(), 10000, 5, "HashTable");
-    TimerMeas(BinarySearch, 10000, 5, "BinarySearch");
-    TimerMeas(LinearSearch, 10000, 5, "LinearSearch");
+    TimeMeas(BalanceTree<int>(), 100000, 100000, "BalanceTree");
+//    TimeMeas(BinaryTree<int>(), 10000, 100000, "BinaryTree");
+    TimeMeas(HashTable<int>(), 100000, 100000, "HashTable");
+    TimerMeas(BinarySearch, 100000, 100000, "BinarySearch");
+    TimerMeas(LinearSearch, 100000, 100000, "LinearSearch");
     
     
     return 0;

@@ -20,9 +20,9 @@ private:
     {
         public:
         
+        T data;
         Node *leftLeaf;
         Node *rightLeaf;
-        T data;
         int height;
         
         Node(const T &d, Node *l,Node *r,int h = 0)
@@ -43,7 +43,6 @@ private:
     
     Node* find(const T & x, Node *subRoot ) const
     {
-        auto start = std::chrono::steady_clock::now();
         while( subRoot != NULL )
             if( x < subRoot->data )
                 subRoot = subRoot->leftLeaf;
@@ -51,9 +50,6 @@ private:
                 subRoot = subRoot->rightLeaf;
             else
             {
-                auto end = std::chrono::steady_clock::now();
-                std::chrono::duration<float,std::milli> duration = end - start;
-                std::cout << duration.count() << " BalanceTree" << std::endl;
                 return subRoot;
             }
         

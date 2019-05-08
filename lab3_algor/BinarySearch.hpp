@@ -19,16 +19,12 @@ namespace Search_Algorithms{
     {
         int *leftPtr = &*(left);
         int *rightPtr = &*(right-1);
-        auto start = std::chrono::steady_clock::now();
         while(left < right)
         {
             int* mid = leftPtr +((rightPtr-leftPtr)/2);
             
             if(*mid == target)
             {
-                auto end = std::chrono::steady_clock::now();
-                std::chrono::duration<float,std::milli> duration = end - start;
-                std::cout << duration.count() << " BS" << std::endl;
                 return static_cast<double>(std::distance(&*left, mid));
             }
             

@@ -12,26 +12,26 @@
 #include <stdio.h>
 namespace Generate
 {
-    std::vector<int> Prime(int size)
+    std::vector<int> Prime(unsigned long size)
     {
         std::vector<int> temp;
-        std::vector<bool> table(10000*size,true);
+        std::vector<bool> table(100*size,true);
         
         temp.reserve(size);
         
-        for(int i = 2; i < sqrt(10000*size); i++)
+        for(unsigned long i = 2; i < sqrt(100*size); i++)
         {
             if(table[i])
             {
-                for(int j = i*i; j < 1000*size; j += i)
+                for(unsigned long j = i*i; j < 100*size; j += i)
                 {
                     table[j] = false;
                 }
             }
         }
         
-        int lastprime = 0;
-        for(int i = 2; temp.size() < size;)
+        unsigned long lastprime = 0;
+        for(unsigned long i = 2; temp.size() < size;)
         {
             if(table[i])
             {
