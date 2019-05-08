@@ -128,7 +128,7 @@ void TimerMeas(F1 algo, int size, int times, std::string name)
         {
             
 
-            
+            //Itererar
             std::random_device rd;
             std::mt19937 eng(rd());
             std::uniform_int_distribution<> range(0, static_cast<int>(container.size() - 1));

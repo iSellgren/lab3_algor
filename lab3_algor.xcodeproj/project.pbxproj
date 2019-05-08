@@ -23,6 +23,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B5170218227DBA150011B86E /* LinearSearch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LinearSearch.hpp; sourceTree = "<group>"; };
+		B5170219227DBA160011B86E /* BinarySearch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinarySearch.hpp; sourceTree = "<group>"; };
+		B517021A227DBA160011B86E /* BinarySearchTreeBalance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinarySearchTreeBalance.hpp; sourceTree = "<group>"; };
+		B517021B227DBA160011B86E /* BinarySearchTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinarySearchTree.hpp; sourceTree = "<group>"; };
+		B517021C227DBA160011B86E /* GenePrime.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenePrime.hpp; sourceTree = "<group>"; };
+		B55E5BDD2281DA8F008AE399 /* TimeMeasuring.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeMeasuring.hpp; sourceTree = "<group>"; };
+		B55E5BDE2281E9CA008AE399 /* Functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Functions.hpp; sourceTree = "<group>"; };
+		B5A42F702280087D00463417 /* Hashtable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hashtable.hpp; sourceTree = "<group>"; };
 		B5D87349227DB9E0009D6DB3 /* lab3_algor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lab3_algor; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D8734C227DB9E0009D6DB3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,7 +65,15 @@
 		B5D8734B227DB9E0009D6DB3 /* lab3_algor */ = {
 			isa = PBXGroup;
 			children = (
+				B5170219227DBA160011B86E /* BinarySearch.hpp */,
+				B517021B227DBA160011B86E /* BinarySearchTree.hpp */,
+				B517021A227DBA160011B86E /* BinarySearchTreeBalance.hpp */,
+				B517021C227DBA160011B86E /* GenePrime.hpp */,
+				B5170218227DBA150011B86E /* LinearSearch.hpp */,
 				B5D8734C227DB9E0009D6DB3 /* main.cpp */,
+				B55E5BDE2281E9CA008AE399 /* Functions.hpp */,
+				B5A42F702280087D00463417 /* Hashtable.hpp */,
+				B55E5BDD2281DA8F008AE399 /* TimeMeasuring.hpp */,
 			);
 			path = lab3_algor;
 			sourceTree = "<group>";
@@ -248,6 +264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
