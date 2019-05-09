@@ -40,20 +40,27 @@ private:
     void rotateWithrightLeafChild( Node* & tempRoot1 ) const;
     void doubleWithleftLeafChild( Node *&tempRoot3 ) const;
     void doubleWithrightLeafChild( Node *&tempRoot1 ) const;
+    int comparisons = 0;
     
-    Node* find(const T & x, Node *subRoot ) const
+    Node* find(const T & x, Node *subRoot )
     {
-        while( subRoot != NULL )
+        while(subRoot)
             if( x < subRoot->data )
+            {
+                ++comparisons;
                 subRoot = subRoot->leftLeaf;
+            }
             else if( subRoot->data < x )
+            {
+                ++comparisons;
                 subRoot = subRoot->rightLeaf;
+            }
             else
             {
                 return subRoot;
             }
         
-        
+        std::cout << "Fucked up" << std::endl;
         return NULL;
     }
     int max(int left,int right)const;
@@ -65,7 +72,9 @@ public:
     ~BalanceTree();
     void chopTree();
     void insert(const T & x);
-    const T &find(const T & value) const;
+    const T &find(const T & value);
+    
+    int Comps();
 
 };
 template <class T>
@@ -78,7 +87,14 @@ BalanceTree<T>::~BalanceTree()
 {
     chopTree();
 }
-
+template<class T>
+int BalanceTree<T>::Comps()
+{
+    int temp = this->comparisons;
+    comparisons = 0;
+    return temp;
+    
+}
 
 template <class T>
 void BalanceTree<T>::chopTree()
@@ -102,7 +118,7 @@ template <class T>
     insert(value,root);
 }
 template <class T>
-const T & BalanceTree<T>::find( const T & value ) const
+const T & BalanceTree<T>::find( const T & value )
 {
     return *elementAt(find(value, root));
 }

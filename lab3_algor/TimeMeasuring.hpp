@@ -39,27 +39,34 @@ int multiply(int value,int mul) {
     
     return ret+ret;
 }
-struct subject {
-    float mean;
-    float Stdev;
-    float Sample;
-    float Size;
+struct calTime {
+    double mean;
+    double Stdev;
+    int Sample;
+    int Size;
     
 };
 template <typename Iter>
-subject StdDiv(Iter left, Iter right,int size)
+calTime StdDiv(Iter left, Iter right,int size)
 {
-    float N = std::distance(left, right);
-    float  mean = std::accumulate(left, right, float{}) / N;
+    int N = 0;
+    double accum = 0.0;
+    double stdev = 0.0;
+    double mean = 0.0;
+    double variance = 0.0;
+    N = static_cast<int>(std::distance(left, right));
+    mean = std::accumulate(left, right, 0.0) / N;
     
-    float accum = 0.0;
+
     std::for_each (left, right, [&](const double d) {
-        accum += (d - mean) * (d - mean);
+        
+        accum += pow(d-mean,2);
+        
     });
-    float variance = accum / N;
-    float stdev = sqrt(variance);
+    variance = (accum / (N));
+    stdev = sqrt(variance);
     
-    subject test ={mean,stdev,N,static_cast<float>(size)};
+    calTime test ={mean,stdev,N,static_cast<int>(size)};
     return test;
     
 
@@ -69,8 +76,10 @@ template <typename F1>
 void TimeMeas(F1 algo, int size, int times, std::string name)
     {
         int Tid = (times+1);
-       std::vector<subject> bar;
+        std::vector<calTime> Timers;
+        std::vector<calTime> comparisons;
         std::vector<float> values;
+        std::vector<int> comps;
         for(int j = 1; j < 11; j++)
         {
             int N = multiply(size, j);
@@ -78,84 +87,124 @@ void TimeMeas(F1 algo, int size, int times, std::string name)
             
             std::vector<int> container;
             container=Generate::Prime(N);
-//            std::shuffle(begin(container), end(container), mt);
             auto Algor = Create<F1>(container);
+            std::cout << N << std::endl;
             for(int i = 1; i < Tid; i++)
             {
 
+                int Comp = 0;
                 std::random_device rd;
                 std::mt19937 eng(rd());
                 std::uniform_int_distribution<> range(0, static_cast<int>(container.size() - 1));
                 int randPrime = container[range(eng)];
-                
                 auto start = std::chrono::steady_clock::now();
                 Algor.find(randPrime);
+                Comp = Algor.Comps();
+                
                 auto end = std::chrono::steady_clock::now();
                 std::chrono::duration<float,std::micro> duration = end - start;
                 
-                
+                comps.push_back(Comp);
                 values.push_back(duration.count());
 
             }
-            bar.push_back(StdDiv(values.begin(), values.end(),N));
+            comparisons.push_back(StdDiv(comps.begin(),comps.end(),N));
+            Timers.push_back(StdDiv(values.begin(), values.end(),N));
             values.clear();
+            comps.clear();
             
         }
         std::ofstream myfile;
         myfile.open (name+".txt", std::ios::app);
         myfile << " #X " << ' ' << " Y " << "\r\n";
-        for(int k = 0; k < bar.size(); k++)
+        for(int k = 0; k < Timers.size(); k++)
         {
          
-            myfile << bar[k].Size << " " << bar[k].mean << " " << bar[k].Stdev << " " << bar[k].Sample << "\r\n";
+            myfile << Timers[k].Size << " " << Timers[k].mean << " " << Timers[k].Stdev << " " << Timers[k].Sample << "\r\n";
          
             
         }
         myfile.close();
+        
+        std::ofstream compfile;
+        compfile.open (name+"Comp"+".txt", std::ios::app);
+        myfile << " #X " << ' ' << " Y " << "\r\n";
+        for(int k = 0; k < comparisons.size(); k++)
+        {
+            
+            compfile << comparisons[k].Size << " " << comparisons[k].mean << " " << comparisons[k].Stdev << " " << comparisons[k].Sample << "\r\n";
+            
+        }
+        compfile.close();
     }
 template <typename F1>
 void TimerMeas(F1 algo, int size, int times, std::string name)
 {
     int Tid = (times+1);
-    std::vector<subject> bar;
+    std::vector<calTime> Timers;
+    std::vector<calTime> comparisons;
     std::vector<float> values;
+    std::vector<int> comps;
+    
     for(int j = 1; j < 11; j++)
     {
         int N = multiply(size, j);
         std::vector<int> container;
         container=Generate::Prime(N);
+        if(algo == LinearSearch)
+        {
+            std::cout << N << " LinearSearch" << std::endl;
+        }
+        else if(algo == BinarySearch)
+        {
+            std::cout << N << " BinarySearch" << std::endl;
+        }
+        
         for(int i = 1; i < Tid; i++)
         {
-            
-
-            //Itererar
+            int Comp = 0;
             std::random_device rd;
             std::mt19937 eng(rd());
             std::uniform_int_distribution<> range(0, static_cast<int>(container.size() - 1));
             int randPrime = container[range(eng)];
             auto start = std::chrono::steady_clock::now();
-            algo(container,randPrime);
+            Comp = algo(container,randPrime);
             auto end = std::chrono::steady_clock::now();
             std::chrono::duration<float,std::micro> duration = end - start;
             
-            
+            comps.push_back(Comp);
             values.push_back(duration.count());
             
         }
-        bar.push_back(StdDiv(values.begin(), values.end(),N));
+        
+        comparisons.push_back(StdDiv(comps.begin(),comps.end(),N));
+        Timers.push_back(StdDiv(values.begin(), values.end(),N));
+        
         values.clear();
+        comps.clear();
         
     }
     std::ofstream myfile;
     myfile.open (name+".txt", std::ios::app);
     myfile << " #X " << ' ' << " Y " << "\r\n";
-    for(int k = 0; k < bar.size(); k++)
+    for(int k = 0; k < Timers.size(); k++)
     {
         
-        myfile << bar[k].Size << " " << bar[k].mean << " " << bar[k].Stdev << " " << bar[k].Sample << "\r\n";
+        myfile << Timers[k].Size << " " << Timers[k].mean << " " << Timers[k].Stdev << " " << Timers[k].Sample << "\r\n";
         
     }
     myfile.close();
+    
+    std::ofstream compfile;
+    compfile.open (name+"Comp"+".txt", std::ios::app);
+    myfile << " #X " << ' ' << " Y " << "\r\n";
+    for(int k = 0; k < comparisons.size(); k++)
+    {
+        
+        compfile << comparisons[k].Size << " " << comparisons[k].mean << " " << comparisons[k].Stdev << " " << comparisons[k].Sample << "\r\n";
+        
+    }
+    compfile.close();
 }
 
 

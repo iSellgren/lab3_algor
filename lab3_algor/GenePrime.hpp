@@ -36,12 +36,12 @@ namespace Generate
             if(table[i])
             {
                 lastprime = i;
-                temp.push_back(lastprime);
+                temp.push_back(static_cast<int>(lastprime));
             }
             
             if(table.begin() + i + 1 != table.end())
                 ++i;
-            else temp.push_back(lastprime);
+            else temp.push_back(static_cast<int>(lastprime));
         }
         
         return temp;

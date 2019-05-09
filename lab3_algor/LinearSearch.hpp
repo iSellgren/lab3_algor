@@ -16,19 +16,18 @@ namespace Search_Algorithms{
     template <typename Iter>
 int linearsearch(Iter left, Iter right,int target)
     {
-        --right;
-//        auto start = std::chrono::steady_clock::now();
+
         for(int* i = &*left; i < &*right; i++)
         {
             if(*i == target)
             {
-//                auto end = std::chrono::steady_clock::now();
-//                std::chrono::duration<float,std::milli> duration = end - start;
-//                std::cout << duration.count() << std::endl;
-                return static_cast<double>(std::distance(&*left, i));
+                //return static_cast<double>(std::distance(&*left, i));
+                return *i;
             }
         }
-        return 0;
+        
+        std::cout << "Fucked up" << std::endl;
+        return -1;
     }
 }
 #endif /* LinearSearch_hpp */

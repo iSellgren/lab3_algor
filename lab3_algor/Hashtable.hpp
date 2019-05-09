@@ -30,6 +30,8 @@ private:
     int items = 0;
     double loadfactor = 0.5;
     double load;
+    int comparisons = 0;
+    
     
 public:
     HashTable();
@@ -37,6 +39,9 @@ public:
     size_t newTableSize();
     void reHash();
     bool find(const T &value);
+    int Comps();
+    
+    
     
 };
 template<class T>
@@ -48,6 +53,13 @@ HashTable<T>::HashTable()
         hashTable[i] = NULL;
     
     
+}
+template<class T>
+int HashTable<T>::Comps()
+{
+    int temp = this->comparisons;
+    comparisons = 0;
+    return temp;
 }
 template<class T>
 void HashTable<T>::insert(T &value)
@@ -134,10 +146,10 @@ template<class T>
 bool HashTable<T>::find(const T &value)
 {
     int pos = (value % hashTable.size());
-    
     Node * iter = hashTable[pos];
-    while(iter != NULL)
+    while(iter)
     {
+        ++comparisons;
         if(iter->data == value)
         {
 
@@ -145,9 +157,8 @@ bool HashTable<T>::find(const T &value)
         }
         iter = iter->next;
     }
-    std::cout << hashTable.size() << std::endl;
     std::cout << "Fucked up" << std::endl;
 
-    return 0;
+    return -1;
 }
 #endif /* Hashtable_hpp */
