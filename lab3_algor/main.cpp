@@ -17,43 +17,25 @@
 #include "BinarySearchTreeBalance.hpp"
 #include "BinarySearchTree.hpp"
 #include "Hashtable.hpp"
-#include "InterpolationSearch.hpp"
 #include "TimeMeasuring.hpp"
 #include <thread>
 #include <utility>
 
-void cleanUp()
-{
-    if (remove("BalanceTree.txt") == 0)
-        printf("Deleted successfully");
-    if (remove("BinarySearchComp.txt") == 0)
-        printf("Deleted successfully");
-    if (remove("LinearSearchComp.txt") == 0)
-        printf("Deleted successfully");
-    if (remove("HashTable.txt") == 0)
-        printf("Deleted successfully");
-    if (remove("BinarySearch.txt") == 0)
-        printf("Deleted successfully");
-    if (remove("LinearSearch.txt") == 0)
-        printf("Deleted successfully");
-    
-}
-
 void task1()
 {
-    TimeMeas(BalanceTree<int>(), 1000, 10000, "BalanceTree");
+    TimeMeas(BalanceTree<int>(), 10000, 100000, "BalanceTree");
 }
 void task2()
 {
-    TimeMeas(HashTable<int>(), 1000, 10000, "HashTable");
+    TimeMeas(HashTable<int>(), 10000, 100000, "HashTable");
 }
 void task3()
 {
-    TimerMeas(BinarySearch, 1000, 10000, "BinarySearch");
+    TimerMeas(BinarySearch, 10000, 100000, "BinarySearch");
 }
 void task4()
 {
-    TimerMeas(LinearSearch, 1000, 10000, "LinearSearch");
+    TimerMeas(LinearSearch, 10000, 100000, "LinearSearch");
 }
 int main() {
     
@@ -70,6 +52,9 @@ int main() {
     t3.join();
     t4.join();
     
-    //system("/usr/local/Cellar/gnuplot/5.2.6_1/bin/gnuplot -persist gnuplot.p");
+    system("/usr/local/Cellar/gnuplot/5.2.6_1/bin/gnuplot  HashTable.p");
+    system("/usr/local/Cellar/gnuplot/5.2.6_1/bin/gnuplot  LinearSearch.p");
+    system("/usr/local/Cellar/gnuplot/5.2.6_1/bin/gnuplot  BinarySearch.p");
+//    system("/usr/local/Cellar/gnuplot/5.2.6_1/bin/gnuplot -persist BalanceTree.p");
     return 0;
 }

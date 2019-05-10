@@ -43,7 +43,6 @@ namespace Generate
                 ++i;
             else temp.push_back(static_cast<int>(lastprime));
         }
-        
         return temp;
     }
 }

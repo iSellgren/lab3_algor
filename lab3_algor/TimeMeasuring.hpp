@@ -57,7 +57,6 @@ calTime StdDiv(Iter left, Iter right,int size)
     N = static_cast<int>(std::distance(left, right));
     mean = std::accumulate(left, right, 0.0) / N;
     
-
     std::for_each (left, right, [&](const double d) {
         
         accum += pow(d-mean,2);

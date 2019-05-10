@@ -25,7 +25,6 @@ int linearsearch(Iter left, Iter right,int target)
                 return *i;
             }
         }
-        
         std::cout << "Fucked up" << std::endl;
         return -1;
     }

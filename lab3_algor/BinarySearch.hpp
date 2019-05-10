@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <algorithm>
 #include <iterator>
-#endif /* BinarySearch_hpp */
+
 namespace Search_Algorithms{
     template <typename Iter>
     int binarysearch(Iter left, Iter right,int target)
@@ -47,3 +47,4 @@ namespace Search_Algorithms{
         return -1;
     }
 }
+#endif /* BinarySearch_hpp */

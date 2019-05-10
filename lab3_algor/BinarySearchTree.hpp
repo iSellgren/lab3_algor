@@ -13,7 +13,6 @@
 #include <iostream>
 #include <cstdlib>
 //subRoot är noden som är root till subträdet
-
 template <typename T>
 class BinaryTree
 {

@@ -59,7 +59,6 @@ private:
             {
                 return subRoot;
             }
-        
         std::cout << "Fucked up" << std::endl;
         return NULL;
     }

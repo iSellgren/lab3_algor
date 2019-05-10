@@ -32,7 +32,6 @@ private:
     double load;
     int comparisons = 0;
     
-    
 public:
     HashTable();
     void insert(T &value);

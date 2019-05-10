@@ -24,5 +24,25 @@ void BinarySearchSTD(std::vector<int> &data, int find)
     std::binary_search(data.begin(), data.end(), find);
     
 }
-
+void cleanUp()
+{
+    if (remove("BalanceTree.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("HashTable.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("HashTableComp.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("BalanceTreeComp.txt") == 0)
+        printf("Deleted successfully");
+    
+    if (remove("BinarySearch.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("LinearSearch.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("BinarySearchComp.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("LinearSearchComp.txt") == 0)
+        printf("Deleted successfully");
+    
+}
 #endif /* Functions_hpp */
