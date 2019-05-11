@@ -79,7 +79,7 @@ void TimeMeas(F1 algo, int size, int times, std::string name)
         std::vector<calTime> comparisons;
         std::vector<float> values;
         std::vector<int> comps;
-        for(int j = 1; j < 11; j++)
+        for(int j = 1; j < 6; j++)
         {
             int N = multiply(size, j);
             
@@ -96,12 +96,15 @@ void TimeMeas(F1 algo, int size, int times, std::string name)
                 std::mt19937 eng(rd());
                 std::uniform_int_distribution<> range(0, static_cast<int>(container.size() - 1));
                 int randPrime = container[range(eng)];
-                auto start = std::chrono::steady_clock::now();
+                std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+                //            auto start = std::chrono::steady_clock::now();
                 Algor.find(randPrime);
                 Comp = Algor.Comps();
                 
-                auto end = std::chrono::steady_clock::now();
-                std::chrono::duration<float,std::micro> duration = end - start;
+                //            auto end = std::chrono::steady_clock::now();
+                std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+//                std::chrono::duration<double,std::nano> duration = end - start;
+                std::chrono::duration<double,std::nano> duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
                 
                 comps.push_back(Comp);
                 values.push_back(duration.count());
@@ -127,7 +130,7 @@ void TimeMeas(F1 algo, int size, int times, std::string name)
         
         std::ofstream compfile;
         compfile.open (name+"Comp"+".txt", std::ios::app);
-        myfile << " #X " << ' ' << " Y " << "\r\n";
+        compfile << " #X " << ' ' << " Y " << "\r\n";
         for(int k = 0; k < comparisons.size(); k++)
         {
             
@@ -145,7 +148,7 @@ void TimerMeas(F1 algo, int size, int times, std::string name)
     std::vector<float> values;
     std::vector<int> comps;
     
-    for(int j = 1; j < 11; j++)
+    for(int j = 1; j < 6; j++)
     {
         int N = multiply(size, j);
         std::vector<int> container;
@@ -166,11 +169,13 @@ void TimerMeas(F1 algo, int size, int times, std::string name)
             std::mt19937 eng(rd());
             std::uniform_int_distribution<> range(0, static_cast<int>(container.size() - 1));
             int randPrime = container[range(eng)];
-            auto start = std::chrono::steady_clock::now();
+            std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+//            auto start = std::chrono::steady_clock::now();
             Comp = algo(container,randPrime);
-            auto end = std::chrono::steady_clock::now();
-            std::chrono::duration<float,std::micro> duration = end - start;
-            
+//            auto end = std::chrono::steady_clock::now();
+            std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+//            std::chrono::duration<double,std::nano> duration = end - start;
+            std::chrono::duration<double,std::nano> duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
             comps.push_back(Comp);
             values.push_back(duration.count());
             
@@ -196,7 +201,7 @@ void TimerMeas(F1 algo, int size, int times, std::string name)
     
     std::ofstream compfile;
     compfile.open (name+"Comp"+".txt", std::ios::app);
-    myfile << " #X " << ' ' << " Y " << "\r\n";
+    compfile << " #X " << ' ' << " Y " << "\r\n";
     for(int k = 0; k < comparisons.size(); k++)
     {
         

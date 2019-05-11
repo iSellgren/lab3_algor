@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5C310882285530000C374E1 /* BalanceTree.p in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5FE48412284AEB400084325 /* BalanceTree.p */; };
+		B5C310892285530000C374E1 /* BinarySearch.p in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5FE483F2284AEB300084325 /* BinarySearch.p */; };
+		B5C3108A2285530000C374E1 /* HashTable.p in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5FE48422284AEB400084325 /* HashTable.p */; };
+		B5C3108B2285530000C374E1 /* LinearSearch.p in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5FE48402284AEB300084325 /* LinearSearch.p */; };
 		B5D8734D227DB9E0009D6DB3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5D8734C227DB9E0009D6DB3 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -17,6 +21,10 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
+				B5C310882285530000C374E1 /* BalanceTree.p in CopyFiles */,
+				B5C310892285530000C374E1 /* BinarySearch.p in CopyFiles */,
+				B5C3108A2285530000C374E1 /* HashTable.p in CopyFiles */,
+				B5C3108B2285530000C374E1 /* LinearSearch.p in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -31,8 +39,14 @@
 		B55E5BDD2281DA8F008AE399 /* TimeMeasuring.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeMeasuring.hpp; sourceTree = "<group>"; };
 		B55E5BDE2281E9CA008AE399 /* Functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Functions.hpp; sourceTree = "<group>"; };
 		B5A42F702280087D00463417 /* Hashtable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hashtable.hpp; sourceTree = "<group>"; };
+		B5C3108D22857A7700C374E1 /* FindMeasuring.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FindMeasuring.hpp; sourceTree = "<group>"; };
+		B5C3108F22859B1400C374E1 /* CompareItems.p */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = CompareItems.p; sourceTree = "<group>"; };
 		B5D87349227DB9E0009D6DB3 /* lab3_algor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lab3_algor; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D8734C227DB9E0009D6DB3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B5FE483F2284AEB300084325 /* BinarySearch.p */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = BinarySearch.p; sourceTree = "<group>"; };
+		B5FE48402284AEB300084325 /* LinearSearch.p */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = LinearSearch.p; sourceTree = "<group>"; };
+		B5FE48412284AEB400084325 /* BalanceTree.p */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = BalanceTree.p; sourceTree = "<group>"; };
+		B5FE48422284AEB400084325 /* HashTable.p */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = HashTable.p; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +79,11 @@
 		B5D8734B227DB9E0009D6DB3 /* lab3_algor */ = {
 			isa = PBXGroup;
 			children = (
+				B5FE48412284AEB400084325 /* BalanceTree.p */,
+				B5FE483F2284AEB300084325 /* BinarySearch.p */,
+				B5FE48422284AEB400084325 /* HashTable.p */,
+				B5FE48402284AEB300084325 /* LinearSearch.p */,
+				B5C3108F22859B1400C374E1 /* CompareItems.p */,
 				B5170219227DBA160011B86E /* BinarySearch.hpp */,
 				B517021B227DBA160011B86E /* BinarySearchTree.hpp */,
 				B517021A227DBA160011B86E /* BinarySearchTreeBalance.hpp */,
@@ -74,6 +93,7 @@
 				B55E5BDE2281E9CA008AE399 /* Functions.hpp */,
 				B5A42F702280087D00463417 /* Hashtable.hpp */,
 				B55E5BDD2281DA8F008AE399 /* TimeMeasuring.hpp */,
+				B5C3108D22857A7700C374E1 /* FindMeasuring.hpp */,
 			);
 			path = lab3_algor;
 			sourceTree = "<group>";
@@ -255,6 +275,7 @@
 		B5D87351227DB9E0009D6DB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -263,8 +284,9 @@
 		B5D87352227DB9E0009D6DB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
-				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

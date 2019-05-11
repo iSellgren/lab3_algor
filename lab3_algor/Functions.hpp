@@ -28,20 +28,41 @@ void cleanUp()
 {
     if (remove("BalanceTree.txt") == 0)
         printf("Deleted successfully");
+    if (remove("BalanceTreeComp.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("BalanceTreeCompfindItem.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("BalanceTreefindItem.txt") == 0)
+        printf("Deleted successfully");
+    
+    
     if (remove("HashTable.txt") == 0)
         printf("Deleted successfully");
     if (remove("HashTableComp.txt") == 0)
         printf("Deleted successfully");
-    if (remove("BalanceTreeComp.txt") == 0)
+    if (remove("HashTableCompfindItem.txt") == 0)
         printf("Deleted successfully");
+    if (remove("HashTablefindItem.txt") == 0)
+        printf("Deleted successfully");
+
     
     if (remove("BinarySearch.txt") == 0)
         printf("Deleted successfully");
-    if (remove("LinearSearch.txt") == 0)
-        printf("Deleted successfully");
     if (remove("BinarySearchComp.txt") == 0)
         printf("Deleted successfully");
+    if (remove("BinarySearchCompfindItem.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("BinarySearchfindItem.txt") == 0)
+        printf("Deleted successfully");
+    
+    
+    if (remove("LinearSearch.txt") == 0)
+        printf("Deleted successfully");
     if (remove("LinearSearchComp.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("LinearSearchCompfindItem.txt") == 0)
+        printf("Deleted successfully");
+    if (remove("LinearSearchfindItem.txt") == 0)
         printf("Deleted successfully");
     
 }

@@ -19,6 +19,7 @@ namespace Search_Algorithms{
     {
         int *leftPtr = &*(left);
         int *rightPtr = &*(right-1);
+        
         int Comp = 0;
         while(left < right)
         {
@@ -43,6 +44,7 @@ namespace Search_Algorithms{
                 rightPtr = &*(--mid);
             }
         }
+        
         std::cout << "Fucked up" << std::endl;
         return -1;
     }

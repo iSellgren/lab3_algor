@@ -16,8 +16,9 @@ namespace Search_Algorithms{
     template <typename Iter>
 int linearsearch(Iter left, Iter right,int target)
     {
-
-        for(int* i = &*left; i < &*right; i++)
+        int *leftPtr = &*(left);
+        int *rightPtr = &*(right-1);
+        for(int* i = leftPtr; i <= rightPtr; i++)
         {
             if(*i == target)
             {
@@ -25,6 +26,7 @@ int linearsearch(Iter left, Iter right,int target)
                 return *i;
             }
         }
+        
         std::cout << "Fucked up" << std::endl;
         return -1;
     }
