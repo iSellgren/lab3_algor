@@ -94,7 +94,7 @@ void TimeMeas(F1 algo, int size, int times, std::string name)
                 int Comp = 0;
                 std::random_device rd;
                 std::mt19937 eng(rd());
-                std::uniform_int_distribution<> range(0, static_cast<int>(container.size() - 1));
+                std::uniform_int_distribution<> range(0-N, static_cast<int>(container.size() - 1));
                 int randPrime = container[range(eng)];
                 std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
                 //            auto start = std::chrono::steady_clock::now();

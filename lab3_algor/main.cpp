@@ -54,20 +54,6 @@ int main() {
     task4();
 
     
-    
-
-    
-    /*
-    std::thread t1(task1);
-    std::thread t2(task2);
-    std::thread t3(task3);
-    std::thread t4(task4);
-    
-    t4.join();
-    t3.join();
-    t2.join();
-    t1.join();
-    */
     system("/usr/local/Cellar/gnuplot/5.2.6_1/bin/gnuplot  HashTable.p");
     system("/usr/local/Cellar/gnuplot/5.2.6_1/bin/gnuplot  LinearSearch.p");
     system("/usr/local/Cellar/gnuplot/5.2.6_1/bin/gnuplot  BinarySearch.p");
